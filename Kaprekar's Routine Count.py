@@ -3,7 +3,7 @@ class MoreThanFourDigits(Exception):
     pass
 class TooSimilar(Exception):
     """Raised when a four-digit number consists of the same digit."""
-
+    pass
 def kaprekar_count(n):
     """Finds the amount of 'Kaprekar's routines' it takes for a four-digit number to reach Kaprekar's constant: 6174."""
 
