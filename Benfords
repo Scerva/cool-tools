@@ -1,0 +1,20 @@
+import pandas as pd
+import math
+
+def benfords_law(series):
+    nums = list(range(1, 10))
+    df = pd.DataFrame({'Leading Digit': nums})
+    benford_estimate = [math.log(1 + 1/n, 10) for n in nums] # This is always the same.
+    counts = []
+    for i in nums:
+        count = 0
+        for k in series:
+            while k >= 10:
+                k //= 10
+            if i == k:
+                count += 1
+        counts.append(count) # This is building a list of each time the leading digit in a value is equal to a specific digit.
+    df['Counts'] = counts
+    df['Proportion'] = [b / sum(counts) for b in counts]
+    df['Estimate'] = benford_estimate # For comparison against the proportions found in the data.
+    return df
